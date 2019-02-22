@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <!-- 表单元素 input checkbox textarea radio select -->
+        <!-- 表单元素更改后映射到 vue的“指令” directive 只是dom上的行间属性，
+            vue给这类属性赋予一定的意义 来实现特殊的功能 所有指令都以v-开头
+            value属性会默认情况下会被vue忽略掉 selected checked 都没有意义
+        -->
+        <!-- v-model 会将msg的值会赋予输入框，输入框的值改变了会影响数据 -->
+        <!-- 1.数据映射到视图 2.视图可以改变数据 实现双向 -->
+        <input type="text" v-model="msg">
+        <!-- Object.defineProperty ES5 -->
+        <!-- 常见的指令 v-text === {{}} 防止{{}} 出现在页面上
+            刷新这个大括号会出现，但是开发当中经常使用{{}}  -->
+        <!-- 当我们的数据渲染后，插入到div里面 -->
+        <div v-text="msg"></div>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 引入vue后会白给你一个Vue的构造函数
+        // 返回结果是vm，(el:'html')不能把vue挂载到html、body标签上，要找一个普通元素代替，不然会报错
+        let vm = new Vue({ // vm == viewmodel
+            el : '#app', //告诉vue能管理那个部分,querySelector 怎么选到app
+            data: { // data中的数据会被vm所代理 可以直接操作数据
+                msg:'hello,zfpx' // 可以通过vm.msg 取到对应的内容或赋值
+            }
+
+        });
+        // Object.defineProperty
+    </script>
+</body>
+</html>
