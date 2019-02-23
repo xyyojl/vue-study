@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- @keyup.enter="add" 回车触发 
+            @keyup.ctrl.enter="add" ctrl+enter 触发事件
+            @keyup="add" 这两个配合使用
+            if(e.keyCode === 13){
+                this.arr.unshift(this.val);
+                this.val = '';
+            }
+        -->
+        <!-- modifiers -->
+        <input type="text" v-model="val" @keyup.ctrl.enter="add">
+        <ul>
+            <li v-for="(a,index) in arr">{{a}}
+                <button @click="remove(index)">删除</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+       
+        let vm = new Vue({ // 根实例
+            el : '#app', 
+            methods:{ 
+                add(e){
+                    this.arr.unshift(this.val);
+                    this.val = '';
+                },
+                remove(i){
+                    this.arr = this.arr.filter((item,index)=>index!==i)
+                }
+            },
+            data: { // data里面都是数据
+                val: '',
+                arr: []
+            }
+            
+        });
+
+    </script>
+</body>
+</html>

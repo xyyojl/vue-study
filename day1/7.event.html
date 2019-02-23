@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick="fn()" id="btn">点我啊</div>
+    <script>
+        // 所有绑定的方法都是window上的
+        function fn(){
+            alert(1)
+        }
+        console.log(btn.onclick);
+        // btn.onclick 相当于下面的代码
+        /* ƒ onclick(event) {
+            fn()
+        } */
+    </script>
+    
+</body>
+</html>

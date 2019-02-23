@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <!-- v-on === @ -->
+    <!-- 传参的话需要加括号fn()  -->
+    <!-- 如何不传递参数 则不要写括号会自动传入事件源，如果写括号了要手动传入$event属性，名字不能改 -->
+    <!-- <div v-on:click="fn">点我啊</div> -->
+    
+    <div @mousedown="fn($event,1)">点我啊</div>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+       
+        let vm = new Vue({ // 根实例
+            el : '#app', 
+            data: { // data里面都是数据
+                a: 1
+            },
+            methods:{ 
+                /* methods 和 data 中的数据会全部放到vm上，而且名字不能冲突，
+                冲突会报错，methods中的this指向的都是实例
+                
+                */
+                // fn:function(){alert(1)} es5语法
+                // fn(){alert(1)} es6语法
+                // 不能使用箭头函数 
+                // fn(){alert(this)}
+                fn(event,a){console.log(event)}
+            }
+            
+        });
+
+    </script>
+</body>
+</html>

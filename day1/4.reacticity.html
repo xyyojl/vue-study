@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- moustache 小胡子语法 表达式 可以放赋值 取值 三元 -->
+        {{a.school}}
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // vue 会循环data中的数据（数据劫持）依次的增加getter和setter
+        let vm = new Vue({ // vm == viewmodel
+            el : '#app', //告诉vue能管理那个部分,querySelector 怎么选到app
+            data: { // data中的数据会被vm所代理 可以直接操作数据
+                a : {school:''} // 方法1
+            }
+            // 使用变量时 要先初始化，负责新加的属性不会导致页面刷新
+            
+        });
+        // vm.$set(给谁加，加什么属性，属性值是什么); 
+        // 方法2：此方法可以给对象添加响应式的数据变化
+        vm.$set(vm.a,'school',1);
+
+        // 方法3：替换原对象
+        vm.a = {school:'zfpx',age:8,address:'xxx'}
+    </script>
+</body>
+</html>

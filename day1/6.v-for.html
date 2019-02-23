@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 要循环谁就在谁的身上增加v-for 属性 -->
+        <!-- 默认是value of 数组 / (value,index) of 数组 -->
+        <ul>
+            <!-- fruit 代表数组里的每一项  注意：这个是fruit.name而不是fruits.name-->
+            <!-- <li v-for="fruit of fruits">{{fruit.name}}</li> -->
+            <!-- <li v-for="(fruit,index) of fruits">{{fruit.name}} {{index+1}}</li> -->
+            <li v-for="(fruit,index) of fruits">
+                 {{index+1}}.{{fruit.name}}
+                <ul>
+                    <li v-for="(c,childIndex) in fruit.color">{{index+1}}.{{childIndex+1}}{{c}}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div v-for="c in 'aaaa'">{{c}}</div>
+        <div v-for="c in 5">{{c}}</div>
+        <!-- <div v-for="value in obj">{{value}}</div> -->
+        <div v-for="(key,value,index) in obj">{{key}}:{{value}}:{{index}}</div>
+    </div>
+    <!-- 以前：拼字符串innerHTML 重渲染 高性能 -->
+    <!-- vue 提供一个指令v-for 解决循环问题的 更搞笑 会复用原有的结构 -->
+
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+       
+        let vm = new Vue({ 
+            el : '#app', 
+            data: { 
+                obj:{name:'zfpx',age:8,address:'xxx'},
+                fruits : [
+                    {name:'香蕉',color:['green','yellow']},
+                    {name:'苹果',color:['red','green','yellow']},
+                    {name:'西瓜',color:['red']}]
+            }
+            
+        });
+
+    </script>
+</body>
+</html>

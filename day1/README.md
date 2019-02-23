@@ -65,3 +65,5 @@ npm init -y // 这个是直接返回结果，需要满足某些条件
 npm install vue // 安装vue，如果把node_modules删除掉，然后再输入npm install 可以安装相同的依赖
 ```
 
+我们绑定的数据是字符串，{},[],function(){}
+
