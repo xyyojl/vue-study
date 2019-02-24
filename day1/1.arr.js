@@ -7,7 +7,7 @@
 // 跟forEach 等价的是 for循环
 // forEach 不能看出它是怎样运行的，但是for循环 可以
 let arr = [1,2,3,4,5];
-arr.b = '100'
+arr.b = '100';
 for (let i = 0; i < arr.length; i++) { // 编程式
     console.log(arr[i]);
 }
