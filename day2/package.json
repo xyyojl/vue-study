@@ -1,0 +1,16 @@
+{
+  "name": "day2",
+  "version": "1.0.0",
+  "description": "- vm => viewModel 数据最终都会被vm所代理 - {{a}} 取值表达式，通过{{}}来进行取值，默认可以不写this，表达式 赋值运算 计算 三元表达式（尽量不要在html里使用三元表达式）",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^3.4.1",
+    "vue": "^2.6.7"
+  }
+}

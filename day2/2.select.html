@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{display: none;}
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <select id="select" v-model='a' multiple>
+            <option value="" disabled>请选择</option>
+            <option value="1">你好</option>
+            <option value="2">不好</option>
+            <option value="3">我好</option>
+        </select>
+        {{a}}
+        <!-- 如果value属性不写默认取的是option中的值,请选择这一项要加disabled -->
+        <!-- 如果select是多选框 则数据类型要是数组类型才行 -->
+        <input type="radio" v-model="gender" value="男">男
+        <input type="radio" v-model="gender" value="女">女
+        {{gender}}
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el : '#app',
+            data : {
+                // a : '',
+                a : [],
+                gender:'男'
+            }
+        })
+    </script>
+
+    <script>
+        /* let oSelect = document.getElementById('select');
+        oSelect.onchange = function(){
+            alert(this.value)
+        } */
+        // 下面的写法:不能通过click事件获取option的值
+        /* let opts = oSelect.getElementsByTagName('option');
+        console.log(opts)
+        for (let i = 0; i < opts.length; i++) {
+            opts[i].onclick = function(){
+                alert(1)
+            }
+            
+        } */
+    </script>
+</body>
+</html>
