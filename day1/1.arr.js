@@ -31,7 +31,7 @@ for (let key in arr) {
     for循环
  */
 // 既能return，又不可以遍历私有属性 的方法，解决forEach和for in存在的问题
-
+console.log('for of')
 for (let val of arr) {
     // 支持return 并且是值of数组（不能遍历对象）
     console.log(val);

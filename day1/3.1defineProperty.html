@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    input的值是：<span id='text'></span>
+
+    
+    <script>
+        // 声明一个对象 给对象添加属性
+        let obj = {};
+        let temp = {};
+        Object.defineProperty(obj,'name',{
+        get(){ //取obj的name属性 会触发get方法
+            text.textContent = temp['name'];
+            return temp['name'];   
+        },
+        set(val){ //给obj赋值 会触发set方法
+            // obj.name = val; 这样写不行会报错
+            temp['name'] = val; // 改变temp的结果
+            input.value = val; // 将值赋予给输入框
+            text.textContent = val;
+        }
+        })
+        input.value = obj.name; // 页面一加载时 会调用get方法
+        input.addEventListener('input',function(){ // 等待输入框的变化
+        obj.name = this.value; // 当值变化的时会调用set方法
+        })
+
+        /* console.log(obj.name);
+        obj.name = 1;
+        console.log(obj.name); */
+
+        /* Object.defineProperty(obj,'name',{
+            configurable: false, // 是否可删除
+            writable: false, // 是否可重新赋值
+            enumerable: false,  // 是否可枚举
+            value : 1
+        }) */
+        // delete obj.name
+        // obj.name = 1000;
+        /* for (let key in obj) {
+            console.log(key)
+        } */
+
+    </script>
+</body>
+</html>

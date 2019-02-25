@@ -32,12 +32,10 @@
     </div>
     <script src="./node_modules/vue/dist/vue.js"></script>
     <script>
-        // 引入vue后会白给你一个Vue的构造函数
-        // 返回结果是vm，(el:'html')不能把vue挂载到html、body标签上，要找一个普通元素代替，不然会报错
-        let vm = new Vue({ // vm == viewmodel
-            el : '#app', //告诉vue能管理那个部分,querySelector 怎么选到app
-            data: { // data中的数据会被vm所代理 可以直接操作数据
-                msg:'hello,zfpx', // 可以通过vm.msg 取到对应的内容或赋值
+        let vm = new Vue({ 
+            el : '#app', 
+            data: { 
+                msg:'hello,zfpx', 
                 p : '<p>hello</p>'
             }
 

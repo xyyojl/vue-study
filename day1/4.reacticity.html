@@ -14,9 +14,9 @@
     <script src="./node_modules/vue/dist/vue.js"></script>
     <script>
         // vue 会循环data中的数据（数据劫持）依次的增加getter和setter
-        let vm = new Vue({ // vm == viewmodel
-            el : '#app', //告诉vue能管理那个部分,querySelector 怎么选到app
-            data: { // data中的数据会被vm所代理 可以直接操作数据
+        let vm = new Vue({ 
+            el : '#app', 
+            data: { 
                 a : {school:''} // 方法1
             }
             // 使用变量时 要先初始化，负责新加的属性不会导致页面刷新

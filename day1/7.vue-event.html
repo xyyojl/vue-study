@@ -8,12 +8,12 @@
 </head>
 <body>
     <div id="app">
-    <!-- v-on === @ -->
-    <!-- 传参的话需要加括号fn()  -->
-    <!-- 如何不传递参数 则不要写括号会自动传入事件源，如果写括号了要手动传入$event属性，名字不能改 -->
-    <!-- <div v-on:click="fn">点我啊</div> -->
-    
-    <div @mousedown="fn($event,1)">点我啊</div>
+        <!-- v-on === @ -->
+        <!-- 传参的话需要加括号fn()  -->
+        <!-- 如果不传递参数 则不要写括号会自动传入事件源，如果写括号了要手动传入$event属性，名字不能改 -->
+        <!-- <div v-on:click="fn">点我啊</div> -->
+        
+        <div @mousedown="fn($event,1)">点我啊</div>
     </div>
     <script src="./node_modules/vue/dist/vue.js"></script>
     <script>
