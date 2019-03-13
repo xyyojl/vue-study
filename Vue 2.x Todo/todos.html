@@ -12,6 +12,9 @@
         .selected{
             color: red;
         }
+        .empty {
+            border-color: red;
+        }
     </style>
     
 </head>
@@ -19,7 +22,9 @@
     <div id="todo-app">
         <div>
             <input type="button" value="全部标记完成">
-            <input type="text" placeholder="添加 todo">
+            <input type="text" placeholder="添加 todo" 
+            v-model="newTodoTitle" @keyup.enter="addTodo" v-bind:class="{empty:emptyChecked}">
+            <span v-if="emptyChecked" style="color: red">请输入内容！</span>
         </div>
         <!-- todo list -->
         <ul>
@@ -46,15 +51,35 @@
     </div>
     <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
     <script>
+        /*
+            这个 addTodo 方法做的事情很简单，生成一个新的 todo 对象，然后将其添加到 todos 列表里（push 方法就是把一个元素加入到数组的末尾），然后将用户的输入值清空。
+        */
+
+        let id = 0; // 用于id生成
         var app = new Vue({
             el:'#todo-app',
             data:function(){
                 return {
-                    todos: [
-                        {id: 0, title: '学习 Vue'},
-                        {id: 1, title: '整个牛项目'},
-                        {id: 2, title: '迎娶白富美走上人生巅峰'}
-                    ]
+                    todos: [],
+                    newTodoTitle:'',
+                    checkEmpty: false// 增加一个检查空值标志
+                }
+            },
+            methods: {
+                addTodo:function(){
+                    if(this.newTodoTitle === ''){
+                        this.checkEmpty = true;
+                       return
+                    }
+                        this.todos.push({id:id++,title:this.newTodoTitle});
+                        this.newTodoTitle = '';
+                        this.checkEmpty = false;
+                }
+            },
+            computed: {
+                // 在模板中引用这个属性来判断是否应用 empty 样式和是否显示提示信息
+                emptyChecked:function(){
+                    return this.newTodoTitle.length === 0 && this.checkEmpty;
                 }
             }
         })
