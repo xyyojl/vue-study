@@ -29,8 +29,12 @@
         <!-- todo list -->
         <ul>
             <li v-for="todo in todos" :key="todo.id">
-                <span>{{todo.title}}</span>
-                <input type="button" value="标记完成">
+                <span :class="{completed:todo.completed}">{{todo.title}}</span>
+                <input type="button" value="标记完成" 
+                    @click="markAsCompleted(todo)" v-if="!todo.completed">
+                <input type="button" value="标记为未完成" 
+                    v-else @click="markAsUncompleted(todo)"
+                >
                 <input type="button" value="删除">
                 <input type="text" value="编辑 todo...">
             </li>
@@ -71,9 +75,16 @@
                         this.checkEmpty = true;
                        return
                     }
-                        this.todos.push({id:id++,title:this.newTodoTitle});
-                        this.newTodoTitle = '';
-                        this.checkEmpty = false;
+                    // 修改后的 todo 模型
+                    this.todos.push({id:id++,title:this.newTodoTitle, completed:false});
+                    this.newTodoTitle = '';
+                    this.checkEmpty = false;
+                },
+                markAsCompleted:function(todo){
+                    todo.completed = true;
+                },
+                markAsUncompleted:function(todo){
+                    todo.completed = false;
                 }
             },
             computed: {
