@@ -29,16 +29,21 @@
         <!-- todo list -->
         <ul>
             <li v-for="todo in todos" :key="todo.id">
-                <span :class="{completed:todo.completed}">{{todo.title}}</span>
+                <span :class="{completed:todo.completed}" @dblclick="editTodo(todo)" @keyup.enter="editDone(todo)">{{todo.title}}</span>
                 <input type="button" value="标记完成" 
                     @click="markAsCompleted(todo)" v-if="!todo.completed">
                 <input type="button" value="标记为未完成" 
                     v-else @click="markAsUncompleted(todo)"
                 >
-                <input type="button" value="删除">
-                <input type="text" value="编辑 todo...">
+                <input type="button" value="删除" @click="removeTodo(todo)">
+                <input type="text" value="编辑 todo..." 
+                v-if="editedTodo !== null  && editedTodo.id===todo.id" 
+                v-model="todo.title" @keyup.enter="editDone(todo)" @keyup.esc="cancelEdit(todo)">
             </li>
-            
+            <div v-if="hasRemovedTodo">
+                <br>
+                <input type="button" value="撤销" @click="restoreTodo()"/>
+            </div>
         </ul>
         <!-- end todo list -->
         <div>
@@ -65,8 +70,10 @@
             data:function(){
                 return {
                     todos: [],
-                    newTodoTitle:'',
-                    checkEmpty: false// 增加一个检查空值标志
+                    newTodoTitle: '',
+                    checkEmpty: false, // 增加一个检查空值标志
+                    removedTodo: null,
+                    editedTodo: null // 用于暂存编辑前的 todo 状态
                 }
             },
             methods: {
@@ -85,12 +92,47 @@
                 },
                 markAsUncompleted:function(todo){
                     todo.completed = false;
+                },
+                removeTodo:function(todo){
+                    let pos = this.todos.indexOf(todo);
+                    this.removedTodo = {
+                        pos:pos,
+                        todo:this.todos.splice(pos,1)[0]
+                    }
+                    /* if (!confirm('确认删除？')) {
+                        return
+                    }
+                    // this.todos.indexOf(todo) 用来定位元素的位置
+                    this.todos.splice(this.todos.indexOf(todo),1) */
+                },
+                restoreTodo:function(){
+                    let pos = this.removeTodo.pos;
+                    let restored = this.removedTodo.todo;
+                    this.todos.splice(pos,0,restored);
+                    this.removedTodo = null;
+                },
+                editTodo:function(todo){
+                    this.editedTodo = {id:todo.id,title:todo.title, completed:false}
+                },
+                editDone:function(todo){
+                    if(todo.title === ''){
+                        this.removeTodo(todo);
+                    }
+                    this.editedTodo = null;
+                },
+                cancelEdit:function(todo){
+                    todo.title = this.editedTodo.title;
+                    this.editedTodo = null;
                 }
+
             },
             computed: {
                 // 在模板中引用这个属性来判断是否应用 empty 样式和是否显示提示信息
                 emptyChecked:function(){
                     return this.newTodoTitle.length === 0 && this.checkEmpty;
+                },
+                hasRemovedTodo: function () {
+                    return !!this.removedTodo
                 }
             }
         })
