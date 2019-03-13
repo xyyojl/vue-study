@@ -38,7 +38,7 @@
                 <input type="button" value="删除" @click="removeTodo(todo)">
                 <input type="text" value="编辑 todo..." 
                 v-if="editedTodo !== null  && editedTodo.id===todo.id" 
-                v-model="todo.title" @keyup.enter="editDone(todo)" @keyup.esc="cancelEdit(todo)">
+                v-model="todo.title" @keyup.enter="editDone(todo)" @keyup.esc="cancelEdit(todo)" v-focus="true">
             </li>
             <div v-if="hasRemovedTodo">
                 <br>
@@ -123,8 +123,7 @@
                 cancelEdit:function(todo){
                     todo.title = this.editedTodo.title;
                     this.editedTodo = null;
-                }
-
+                },
             },
             computed: {
                 // 在模板中引用这个属性来判断是否应用 empty 样式和是否显示提示信息
@@ -133,6 +132,13 @@
                 },
                 hasRemovedTodo: function () {
                     return !!this.removedTodo
+                }
+            },
+            directives:{
+                focus:{
+                    inserted:function(el){
+                        el.focus();
+                    }
                 }
             }
         })
