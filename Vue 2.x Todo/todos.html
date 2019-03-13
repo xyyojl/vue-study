@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Todo</title>
+    <style>
+        .completed{
+            text-decoration: line-through;
+        }
+        .selected{
+            color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="todo-app">
+        <div>
+            <input type="button" value="全部标记完成">
+            <input type="text" placeholder="添加 todo">
+        </div>
+        <!-- todo list -->
+        <ul>
+            <li>
+                <span>学习 Vue</span>
+                <input type="button" value="标记完成">
+                <input type="button" value="删除">
+                <input type="text" value="编辑 todo...">
+            </li>
+            <li>
+                <span>整个牛项目</span>
+                <input type="button" value="标记完成">
+                <input type="button" value="删除">
+                <input type="text" value="编辑 todo...">
+            </li>
+            <li>
+                <span>迎娶白富美走上人生巅峰</span>
+                <input type="button" value="标记完成">
+                <input type="button" value="删除">
+                <input type="text" value="编辑 todo...">
+            </li>
+        </ul>
+        <!-- end todo list -->
+        <div>
+            <span>剩余3 项没完成 ----</span>
+            <span>
+                筛选
+                <input type="button" class="selected" value="全部">
+                <input type="button" value="进行中">
+                <input type="button" value="已完成">
+                <input type="button" value="清除已完成">
+                <input type="button" value="清除全部">
+            </span>
+        </div>
+    </div>
+    
+</body>
+</html>
