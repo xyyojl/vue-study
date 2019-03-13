@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单绑定</title>
+    <style>
+        .empty {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>练习一：尽管我们在用户没有输入时用红色边框提醒用户内容为空，但是用户点击按钮后任然显示提交成功的通知，这是不合理的。合理的情况应该是弹出通知提示用户请输入内容。修改示例的代码，使其达到上述效果。（提示：修改 send 方法）</p>
+    <div id="app">
+        <input type="text" v-model="value" v-bind:class="{empty:!count}">
+        <input type="button" value="发送" v-on:click="send">
+        <div>value的值是：{{value}}</div>
+        <!-- 引用 count -->
+        <div>字数：{{count}}</div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {value:''}
+            },
+            // 这是新增的方法
+            methods:{
+                send:function(){
+                    if (!this.count) {
+                        alert('请输入内容！');
+                        return
+                    }
+                    alert('发送成功！');
+                    this.value = ''
+                    /* if(this.count){
+                        alert('发送成功！')
+                        this.value = ''
+                    }else{
+                        alert('请输入内容！')
+                    } */
+                }
+            },
+            // 这是新增的计算属性
+            computed:{
+                count:function(){
+                    return this.value.length;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

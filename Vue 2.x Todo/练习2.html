@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单绑定</title>
+    <style>
+        .empty {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>练习二：即使内容为空，输入框下方依然显示 value 的值是：，这看起来很奇怪。我们希望只有用户真正地输入了内容后，才提示 value 的值，请参阅 Vue 关于指令的官方文档，找到满足我们需求的指令，修改示例代码以达到上述效果。（提示：我们应该通过判断 value 是否有值来决定是否显示输入框下边的 div 元素。）</p>
+    <div id="app">
+        <input type="text" v-model="value" v-bind:class="{empty:!count}">
+        <input type="button" value="发送" v-on:click="send">
+        <div v-if="count">value的值是：{{value}}</div>
+        <!-- 引用 count -->
+        <div>字数：{{count}}</div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {value:''}
+            },
+            // 这是新增的方法
+            methods:{
+                send:function(){
+                    if(this.count){
+                        alert('发送成功！')
+                        this.value = ''
+                    }else{
+                        alert('请输入内容！')
+                    }
+                }
+            },
+            // 这是新增的计算属性
+            computed:{
+                count:function(){
+                    return this.value.length;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

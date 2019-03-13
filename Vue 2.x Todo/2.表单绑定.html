@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单绑定</title>
+    <style>
+        .empty {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>表单绑定，加点方法，计算属性，加点样式</p>
+    <div id="app">
+        <input type="text" v-model="value" v-bind:class="{empty:!count}">
+        <input type="button" value="发送" v-on:click="send">
+        <div>value的值是：{{value}}</div>
+        <!-- 引用 count -->
+        <div>字数：{{count}}</div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: function(){
+                return {value:''}
+            },
+            // 这是新增的方法
+            methods:{
+                send:function(){
+                    alert('发送成功！')
+                    this.value = ''
+                }
+            },
+            // 这是新增的计算属性
+            computed:{
+                count:function(){
+                    return this.value.length;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
