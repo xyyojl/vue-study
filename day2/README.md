@@ -122,6 +122,43 @@
 
 
 
+使用vuetools插件
+
+
+
+### axios的使用
+
+新建一个文件cart.json，请求数据额
+
+Vue给我们专门提供一个axios
+
+### 如何理解promise
+
+
+
+
+
+### 实现购物车的步骤
+
+1. 先制造假数据，然后获取假数据
+2. 循环假数据，放到表格里面
+3. 实现删除功能
+
+
+
+希望方法有复用性
+
+
+
+```javascript
+var arr = [{name:1},{name:2}];
+var newObj = arr[0];
+arr.forEach(item => console.log(item === newObj))
+```
+
+
+
+
 
 
 

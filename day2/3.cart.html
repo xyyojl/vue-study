@@ -9,16 +9,101 @@
 </head>
 <body>
     <div id="app">
-       
+        <!-- bootstrap 栅格化布局 默认12列 （有一些框架可能是24列） -->
+        <!-- 常见的样式 基本样式 + 增强样式 -->
+        <!-- default 灰色 success 绿色  danger 红色 warning 警告色 info 浅蓝色 primary 蓝色 -->
+        <!-- vue的ui框架 iview mintui elementui -->
+        <div class="container">
+            <!-- 每一行又会拥有12列 -->
+            <div class="row">
+                <table class="table table-hover table-borderd">
+                    <caption class="h2 text-warning text-center">珠峰购物车</caption>
+                    <tr>
+                        <th>全选 <input type="checkbox"></th>
+                        <td>商品</td>
+                        <td>单价</td>
+                        <td>数量</td>
+                        <td>小计</td>
+                        <td>操作</td>
+                    </tr>
+                    <tr v-for="(product,index) in products">
+                        <td><input type="checkbox" v-model="product.isSelected"></td>
+                        <td>
+                            <!-- :和v-bind 等价 指令：动态绑定数据 :title="product.productName" -->
+                            <img v-bind:src="product.productCover" >
+                            {{product.productInfo}}
+                        </td>
+                        <td>
+                            {{product.productPrice}}
+                        </td>
+                        <td>
+                            <!-- .number 是让输入框的值变成数字类型 .lazy 当输入框失去焦点时更新数据 -->
+                            <input type="number" v-model.number="product.productCount">
+                        </td>
+                        <td>
+                            <!-- 希望代码可以复用 -->
+                            <!-- {{'￥'+(product.productCount*product.productPrice).toFixed(2)}} -->
+                            <!-- 过滤器 原数据不变的情况，只是改变显示的效果 管道符 -->
+                            {{product.productCount*product.productPrice | toFixed(2)}}
+                        </td>
+                        <td><button class="btn btn-warning" @click="remove(product)">删除</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
     </div>
+    <!-- 
+        错误写法：
+        <img src="product.productCover" alt="">
+        <img src="{{product.productCover}}" alt="">
+    -->
     <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- 基于promise的 -->
+    <script src="./node_modules/axios/dist/axios.js"></script>
     <script>
         let vm = new Vue({
             el : '#app',
+            filters:{ // 可以有好多的自定义过滤器
+                toFixed(input,param1){ // 这里的this指向的是window
+                    // input 相当于 | 前面的值
+                    // return input 
+                    // return input.toFixed(2) 数字不固定，需要传参进来
+                    return '￥'+input.toFixed(param1); 
+                    // input 代表的是管道符前面的内容 param1 代表的是 toFixed中传递的参数
+                }
+            },
+            // 专门用来发送ajax的方法
+            created(){ // 在数据被初始化后会调用,this指向指的也是vm实例,钩子函数
+                this.getData();
+            },
+            methods:{
+                getData(){ // 数据初始化
+                    // Promise 解决回调问题的
+                    axios.get('./carts.json').then(res =>{ // success
+                        this.products = res.data; // 获取数据 需要的是res.data
+                    },err => { // error
+                        console.log(err);
+                    });
+                },
+                remove(p){  // p 代表的是当前点击的这一项[xxx,ooo,qqq,ppp]
+                    // 把相同的过滤出来
+                    this.products =this.products.filter(item=>item!==p)
+                }
+            },
             data : {
-                a:1
+                products:[]
             }
         })
+
+
+        /* created(){ // 在数据被初始化后会调用,this指向指的也是vm实例,钩子函数
+            axios.get('./cart.json').then(function(res){ // success
+                // this.products = res.data; 为空 这里的this指向window,所以要使用箭头函数
+            },function(err){ // error
+                console.log(err);
+            });
+        }, */
     </script>
 </body>
 </html>

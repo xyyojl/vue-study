@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+       
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- 基于promise的 -->
+    <script src="4.promise-ajax.js"></script>
+    <script>
+        let vm = new Vue({
+            el : '#app',
+            // 专门用来发送ajax的方法
+            created(){ // 在数据被初始化后会调用,this指向指的也是vm实例,钩子函数
+              ajax({url:'./carts.json'}).then((res)=>{
+                  console.log(res);
+              },(err)=>{
+                  console.log(err);
+              })
+            },
+            data : {
+                products:[]
+            }
+        })
+
+
+        /* created(){ // 在数据被初始化后会调用,this指向指的也是vm实例,钩子函数
+            axios.get('./cart.json').then(function(res){ // success
+                // this.products = res.data; 为空 这里的this指向window,所以要使用箭头函数
+            },function(err){ // error
+                console.log(err);
+            });
+        }, */
+    </script>
+</body>
+</html>
