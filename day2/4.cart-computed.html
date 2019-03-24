@@ -22,7 +22,7 @@
                         <!-- click 点击时 checkbox的状态还没有改变 所以拿到的总是相反的
                             change可以保证只当值变化后再出触发函数
                         -->
-                        <th>全选 <input type="checkbox" v-model="checkAll" @change="change"></th>
+                        <th>全选 <input type="checkbox" v-model="checkAll"></th>
                         <td>商品</td>
                         <td>单价</td>
                         <td>数量</td>
@@ -32,7 +32,7 @@
                     <tr v-for="(product,index) in products">
                         <td>
                             <input type="checkbox" 
-                                   v-model="product.isSelected" @change="checkOne">
+                                   v-model="product.isSelected">
                         </td>
                         <td>
                             <!-- :和v-bind 等价 指令：动态绑定数据 :title="product.productName" -->
@@ -57,7 +57,7 @@
                     <tr>
                         <!-- {{sum() | toFixed(2)}} 数据一变化就会重新调用此函数 算出最新的结果
                         不会缓存上一次的结果 computed可以解决这个问题 -->
-                        <td colspan="6">总价格: {{sum() | toFixed(2)}}</td>
+                        <td colspan="6">总价格: {{sum | toFixed(2)}}</td>
                     </tr>
                 </table>
             </div>
@@ -75,6 +75,33 @@
     <script>
         let vm = new Vue({
             el : '#app',
+            /* 当给全选赋值时，要影响其他人的变化，当页面刷新时，获取全选值，
+            是根据下面的checkbox计算出来的结果给全选赋值 Object.defineProperty */
+            computed:{ // 放在computed中最后也会放在vm上，不能和methods与data重名
+                checkAll:{
+                    // 当products值变化时会重新计算，当商品的数量，没有发生改变
+                    get(){ // get和set this只想实例 默认v-model 会获取checkAll的值 所以会调用get方法
+                        return this.products.every(p=>p.isSelected);
+                    },
+                    set(val){ // 当我们给checkbox赋值的时候
+                        this.products.forEach(p=>p.isSelected = val);
+                    }
+                },
+                sum(){ // 如果计算属性写成函数，默认调用的就是get方法
+                    return this.products.reduce((prev,next)=>{
+                        if(!next.isSelected)return prev; // 如果当前这个没被选中 就不加当前这一项
+                        return prev+next.productPrice*next.productCount;
+                    },0);
+                }
+                /* sum:{ // sum的结果会被缓存 如果依赖的数据没有变化就不会重新
+                    get(){ 
+                        return this.products.reduce((prev,next)=>{
+                            if(!next.isSelected)return prev; // 如果当前这个没被选中 就不加当前这一项
+                            return prev+next.productPrice*next.productCount;
+                        },0);
+                    }
+                } */
+            },
             filters:{ // 可以有好多的自定义过滤器
                 toFixed(input,param1){ // 这里的this指向的是window
                     // input 相当于 | 前面的值
@@ -102,26 +129,9 @@
                     // 把相同的过滤出来
                     this.products =this.products.filter(item=>item!==p)
                 },
-                change(){
-                    // alert(this.checkAll);
-                    // 把数组里面的循环一下
-                    // 根据当前自己的状态设置 其他人的状态 实现全选和反选
-                    this.products.forEach(item => item.isSelected=this.checkAll);
-                },
-                checkOne(){
-                    // 根据下面点击的结果控制上面全选结果
-                    this.checkAll = this.products.every(item=>item.isSelected)
-                },
-                sum(){ // 求和函数
-                    return this.products.reduce((prev,next)=>{
-                        if(!next.isSelected)return prev; // 如果当前这个没被选中 就不加当前这一项
-                        return prev+next.productPrice*next.productCount;
-                    },0);
-                }
             },
             data : {
-                products:[],
-                checkAll:false // 是否全选
+                products:[]
             }
         })
 

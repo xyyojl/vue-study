@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.css">
+    <style>
+        div > div{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="flag=!flag">切换</button>
+        <!-- <transition enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+            <ul>
+                <div v-for="a in arr">{{a}}</div>
+            </ul>
+        </transition> -->
+        <input type="text" v-model="query">
+        <transition-group enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+            <!-- v-for 默认会复用原有的dom元素，如果加了key 而且key不同他认为就是两个人啦 -->
+            <div v-for="(a,index) in newArr" :key="Math.random()">{{a}}</div>
+        </transition-group>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            computed:{
+                newArr(){
+                    return this.arr.filter(item=>item==this.query)
+                }
+            },
+            data:{
+                query:'',
+                flag:true,
+                arr:[1,2,3,4,5]
+            }
+        })
+    </script>
+</body>
+</html>

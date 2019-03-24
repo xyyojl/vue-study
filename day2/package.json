@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^3.7.0",
     "axios": "^0.18.0",
     "bootstrap": "^3.4.1",
     "vue": "^2.6.7"
