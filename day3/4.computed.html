@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="a">
+        {{msg}}
+        <!-- 根据输入框中的内容 算出一个错误信息 -->
+        
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                a:''
+            },
+            computed:{ // computed 默认get 方法，必须要有return computed不支持异步
+                msg(){
+                    if(this.a.length < 3){
+                        return '少了'
+                    }
+                    if(this.a.length > 6){
+                        return '多了'
+                    }
+                    return ''
+                }
+            }
+        })
+
+
+        
+    </script>
+</body>
+</html>
+
+
+
+<!-- 当给a赋值的时候影响了 错误信息的改变 错误的 -->
+<!-- computed:{
+    a:{
+        set(){ // 如果写了set方法，并且val给了别人，那当前的a就不会被赋予结果了
+            return ''
+        },
+        get(val){
+            this.msg = val;
+        }
+    
+    }
+},
+data:{
+    msg:''
+} -->

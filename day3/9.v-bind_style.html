@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 后期加样式会把原来的干掉 -->
+        <!-- 动态绑定样式 -->
+        <div style="font-size:30px;" :style="{backgroundColor:'red',color:'pink'}">我很帅</div>
+        <div :style="[sty1,sty2,{fontSize:'30px'}]">我非常帅</div>
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // class="a b c" style="background:'color'"
+        // 第一种方式是对象 第二种方式是数组
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                sty1:{backgroundColor:'red'},
+                sty2:{color:'pink'}
+            }
+        })
+    </script>
+</body>
+</html>

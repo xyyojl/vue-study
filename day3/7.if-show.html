@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- template 标签 是vue提供给我们的没有任何实际意义，用来包裹元素用的
+        v-show不支持template，只有v-if使用 -->
+        <template v-if="true">
+            <div>我很帅</div>
+            <div>我很帅</div>
+            <div>我很帅</div>
+            <div>我很帅</div>
+        </template>
+        <div v-else>我非常帅</div>
+        <!-- 点一下，变登录，点一下变注册 -->
+        <button @click="cut=!cut">点我啊</button>
+        <!-- 默认情况下在切换dom时相同的结构会被复用，如果不需要复用 需要加key -->
+        <!-- :key 代表数字1 key代表字符串1 -->
+        <template v-if="cut">
+            <label>注册</label>
+            <input type="text" key="1">
+        </template>
+        <template v-else>
+            <label>登录</label>
+            <input type="text" key="2">
+        </template>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                cut:true,
+                flag: false
+            }
+        })
+    </script>
+</body>
+</html>

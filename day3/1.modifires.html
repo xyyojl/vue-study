@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- stopPropagation 阻止事件传播 -->
+        <div @click.capture.stop="parent">parent
+            <div @click.stop="child">child
+                <div @click="grandson">grandson
+                </div>
+            </div>
+        </div>
+        <!-- 阻止默认行为 -->
+        <a href="https://www.zhufengpeixun.cn" @click.prevent="parent">去珠峰</a>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            methods:{
+                parent(){
+
+                },
+                child(){
+
+                },
+                grandson(){
+
+                }
+            },
+            data:{}
+        })
+    </script>
+</body>
+</html>

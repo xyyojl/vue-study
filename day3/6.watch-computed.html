@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="val">
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            computed:{
+                fullName(){
+                    return this.firstName+this.val+this.lastName;
+                }
+            },
+            data:{
+                firstName:'zfpx',
+                lastName:'jw',
+                val:'', // zfpx-val-jw
+                fullName:''
+            }
+        })
+       /*  // 1.没有异步逻辑
+        watch:{
+                val(newVal){
+                    this.fullName = this.firstName+newVal+this.lastName;
+                },
+                firstName(){ // 如果有人修改了vm.firstName 需要观察firstName是否有变化
+
+                }, 
+                lastName(){ // 同理
+
+                }
+            }, */
+    </script>
+</body>
+</html>

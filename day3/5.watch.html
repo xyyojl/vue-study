@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="a">
+        {{msg}}      
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                a:'',
+                msg:''
+            },
+            /* watch:{ // 只有值变化的时候才会触发 **支持异步了** 其他情况下我们更善于使用computed
+                a(newVal,oldVal){ // watch 的属性名字要跟观察的人的名字一致
+                    // console.log(newVal,oldVal);
+                    setTimeout(()=>{
+                        this.msg = '.........';
+                        if(newVal.length < 3){
+                            return this.msg = '太少' // return 是为了结束往下走
+                        }
+                        if(newVal.length > 6){
+                            return this.msg = '太多' // return 是为了结束往下走
+                        }
+                        this.msg = '';
+                    },2000)
+                    
+                }
+            } */
+        })
+        vm.$watch('a',(newVal,oldVal)=>{ // watch 的属性名字要跟观察的人的名字一致
+            // console.log(newVal,oldVal);
+            setTimeout(()=>{
+                vm.msg = '.........';
+                if(newVal.length < 3){
+                    return vm.msg = '太少' // return 是为了结束往下走
+                }
+                if(newVal.length > 6){
+                    return vm.msg = '太多' // return 是为了结束往下走
+                }
+                vm.msg = '';
+            },2000)
+            
+        })
+
+        
+    </script>
+</body>
+</html>
+
+
+
+<!-- 当给a赋值的时候影响了 错误信息的改变 错误的 -->
+<!-- computed:{
+    a:{
+        set(){ // 如果写了set方法，并且val给了别人，那当前的a就不会被赋予结果了
+            return ''
+        },
+        get(val){
+            this.msg = val;
+        }
+    
+    }
+},
+data:{
+    msg:''
+} -->
