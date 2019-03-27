@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button v-color="flag">变色</button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            directives:{
+                color(el,bindings){ // el指代的是button按钮
+                    el.style.backgroundColor = bindings.value;
+                }
+            },
+            el:'#app',
+            data:{
+                flag:true
+            }
+        })
+    </script>
+</body>
+</html>

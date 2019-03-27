@@ -70,9 +70,17 @@ filters:{
   <img :src="src" :width="w">
 ```
 
-- 
+### 实现单页开发的方式
+
+- 通过hash记录跳转的路径（可以产生历史管理）
+
+- 浏览器自带的历史管理的方法history(history.pushState())可能会导致404错误
+
+> **开发**时使用hash的方式，**上线**的话我们会使用history的方式
 
 
 如何实现购物车思路：
 
 1. 造假数据
+
+zhufengzhufeng 仓库 vue-todo

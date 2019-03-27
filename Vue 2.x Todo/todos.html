@@ -21,7 +21,7 @@
 <body>
     <div id="todo-app">
         <div>
-            <input type="button" value="全部标记完成">
+            <input type="button" value="全部标记完成" @click="markAllAsCompleted">
             <input type="text" placeholder="添加 todo" 
             v-model="newTodoTitle" @keyup.enter="addTodo" v-bind:class="{empty:emptyChecked}">
             <span v-if="emptyChecked" style="color: red">请输入内容！</span>
@@ -124,6 +124,13 @@
                     todo.title = this.editedTodo.title;
                     this.editedTodo = null;
                 },
+                markAllAsCompleted:function(){
+                    this.todos.map(function(todo){
+                        if(!todo.completed){
+                            todo.completed = true;
+                        }
+                    })
+                }
             },
             computed: {
                 // 在模板中引用这个属性来判断是否应用 empty 样式和是否显示提示信息
