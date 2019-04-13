@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todo-demo</title>
+    <link rel="stylesheet" href="./css/reset.min.css">
+    <link rel="stylesheet" href="./css/iconfont.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="app-menu">
+                <div class="mstrip"></div>
+                <div class="mstrip"></div>
+                <div class="mstrip"></div>
+            </div>
+            <div class="app-title">YOONE</div>
+        </header>
+        <main>
+            <ul class="todo-list">
+                <li>
+                    <span>点击右下方按钮，写下您的第一件事项</span>
+                    <i class="iconfont icon-shanchu clear"></i>
+                    <i class="iconfont icon-dui finish"></i>
+                </li>
+            </ul>
+            <div class="add-content">
+                <input type="text" placeholder="添加新任务...">
+                <div class="btnBox">
+                    <button class="confirm">确定</button>
+                    <button class="addBtn"><i class="iconfont icon-jia"></i></button>
+                </div>
+            </div>
+            <ul class="menu-options">
+                <li class="menu-item"><i class="iconfont icon-4"></i><span>待做事项</span></li>
+                <li class="menu-item"><i class="iconfont icon-zongheceping"></i><span>完成事项</span></li>
+                <li class="menu-item"><i class="iconfont icon-huanfu"></i><span>皮肤</span></li>
+                <li class="menu-item"><i class="iconfont icon-yiwentishi"></i><span>关于</span></li>
+            </ul>
+            <ul class="completed-tasks">
+                <li class="completed-item">
+                    <span>点击右下方按钮，写下您的第一件事项</span>
+                    <i class="iconfont icon-shanchu clear"></i>
+                </li>
+            </ul>
+            <ul class="selet-color-panel">
+                <li class="color-item">
+                    <span>文艺药丸</span>
+                    <div class="color-block">
+                        <div style="background-color:rgb(37,185,154);"></div>
+                        <div style="background-color:rgb(232,245,233);"></div>
+                    </div>
+                </li>
+                <li class="color-item">
+                    <span>狂热药丸</span>
+                    <div class="color-block">
+                        <div style="background-color:rgb(244, 67, 54);"></div>
+                        <div style="background-color:rgb(232,245,233);"></div>
+                    </div>
+                </li>
+                <li class="color-item">
+                    <span>高冷药丸</span>
+                    <div class="color-block">
+                        <div style="background-color:rgb(33, 150, 243);"></div>
+                        <div style="background-color:rgb(232,245,233);"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="about">
+                <p class="description">药丸清单，一个专治拖延症患者的应用。</p>
+                <p>当前为测试版本，持续更新中... </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
