@@ -1,0 +1,196 @@
+body{
+    background-color: #edf0f1;
+    font-size: 16px;
+}
+header{
+    position: relative;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,.25);
+    background-color: rgb(37, 185, 154);
+    z-index: 2;
+}
+header .app-menu{
+    position: absolute;
+    top: 14px;
+    left: 5%;
+    width: 40px;
+    padding: 3px 0;
+    cursor: pointer;
+}
+header .app-menu .mstrip{
+    width: 60%;
+    height: 2px;
+    background: #fff;
+    margin: 6px auto;
+    border-radius: 5px;
+}
+header .app-title{
+    height: 30px;
+    padding: 15px 0;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing:1px;
+    color: #fff;
+}
+.todo-list,.completed-tasks{
+    padding-top: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+.todo-list .task-item,
+.completed-tasks .completed-item{
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(184, 121, 121, 0.1);
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+.todo-list .task-item span,
+.completed-tasks .completed-item span{
+    display: inline-block;
+    width: 65%;
+}
+.todo-list .task-item .iconfont,
+.completed-tasks .completed-item .iconfont{
+    position: absolute;
+    top: 50%;
+    margin-top: -14px;
+    width: 28px;
+    height: 28px;
+    font-size: 26px;
+    cursor: pointer;
+    opacity: 0.4;
+}
+.todo-list .task-item .icon-shanchu{
+    right: 52px;
+}
+.todo-list .task-item .icon-dui,
+.completed-tasks .completed-item .icon-shanchu{
+    right: 12px;
+}
+.add-content{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255,255,255,1);
+    /* z-index: 3; */
+}
+.add-content input{
+    position: relative;
+    display: block;
+    width: 90%;
+    margin: 100px auto 0;
+    height: 50px;
+    font-size: 22px;
+    background-color:transparent;
+    border: none;
+    border-bottom: 2px solid #BDBDBD;
+    transition: .3s ease;
+}
+.add-content .btnBox{
+    position: fixed;
+    bottom: 3%;
+    right: 5%;
+}
+.add-content .addBtn{
+    width: 60px;
+    height: 60px;
+    background-color: rgb(255, 193, 7);
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+    border: 0;
+    color: #fff;
+    text-align: center;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+.add-content .addBtn i{
+    font-size: 28px;
+}
+.add-content .btnBox .confirm{
+    position: absolute;
+    bottom: 90px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    font-size: 14px;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    background-color: rgb(117, 117, 117);
+    color: #fff;
+    cursor: pointer;
+}
+.menu-options{
+    width: 250px;
+    padding-top: 20px;
+    height: calc(100vh - 60px);
+    background-color: #fff;
+    position: fixed;
+    top: 60px;
+    left: -250px;
+    z-index: 1;
+    transition: all .3s ease;
+}
+.menu-options .menu-item{
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    color: #757575;
+    padding: 20px 0 20px 30px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+.menu-options .menu-item > i{
+    font-size: 20px;
+    vertical-align: middle;
+}
+.menu-options .menu-item > span{
+    height: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.menu-options .menu-item:hover {
+    background-color: #eee;
+}
+.selet-color-panel{
+    box-sizing: border-box;
+    position: fixed;
+    top: 160px;
+    left: 5%;
+    width: 90%;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    background-color: #fff;
+    border-radius: 3px;
+    z-index: 2;
+    padding: 20px 0;
+}
+.selet-color-panel .color-item{
+    position: relative;
+    width: 54%;
+    margin: 0 auto;
+    padding: 20px 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+    color: #616161;
+}
+.color-block{
+    position: absolute;
+    top: 20px;
+    /* right: 26%; */
+    right: 40px;
+    width: 70px;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.color-block div{
+    float: left;
+    width: 35px;
+    height: 20px;
+}
+
+/* menu-options menu-item */

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todo-demo1</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">
+                        ToDOList
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="text-danger">亲们 你有xxx件事要完成</h3>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <!-- 如果isSelected为true则del生效 -->
+                                    <!-- 当我点击li时，我可以知道点击的是那一项，
+                                        如果我点击的todo和当前循环的某一项相等的时候，应该显示输入框 -->
+                                    <span>
+                                        <input type="checkbox">
+                                        
+                                    </span>
+                                    <input type="text"> 
+                                    <button class="pull-right btn btn-danger btn-xs">&bigotimes;</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <ul class="nav nav-pills">
+                                <li role="presentation"><a href="#/all">全部任务</a></li>
+                                <li role="presentation"><a href="#/finish">已完成</a></li>
+                                <li role="presentation"><a href="#/unfinish">未完成</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

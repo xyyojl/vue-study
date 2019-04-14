@@ -24,16 +24,16 @@
         </header>
         <main>
             <ul class="todo-list">
-                <li>
+                <li class="task-item">
                     <span>点击右下方按钮，写下您的第一件事项</span>
                     <i class="iconfont icon-shanchu clear"></i>
                     <i class="iconfont icon-dui finish"></i>
                 </li>
             </ul>
             <div class="add-content">
-                <input type="text" placeholder="添加新任务...">
+                <input type="text" placeholder="添加新的任务..." maxlength="64">
                 <div class="btnBox">
-                    <button class="confirm">确定</button>
+                    <button class="confirm">确认</button>
                     <button class="addBtn"><i class="iconfont icon-jia"></i></button>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <li class="menu-item"><i class="iconfont icon-huanfu"></i><span>皮肤</span></li>
                 <li class="menu-item"><i class="iconfont icon-yiwentishi"></i><span>关于</span></li>
             </ul>
-            <ul class="completed-tasks">
+            <ul class="completed-tasks" style="display: none;">
                 <li class="completed-item">
                     <span>点击右下方按钮，写下您的第一件事项</span>
                     <i class="iconfont icon-shanchu clear"></i>

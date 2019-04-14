@@ -48,7 +48,7 @@ let vm = new Vue({
             this.title = '';
         },
         remove(todo){ 
-            // 拿出todos中的每一项跟传过来的一项比较 item == todo => 把相等的留下来 
+            // 拿出todos中的每一项跟传过来的一项比较 item !== todo => 把不相等的留下来 
             // item !== todo => 删除相同的
             // 拿到当前点击的和数组里的对比 相等则返回false即可
             this.todos = this.todos.filter(item=>item!==todo);
@@ -75,9 +75,12 @@ let vm = new Vue({
 })
 
 /* 
+实现功能：
 1.将数据循环到页面上,为了方便，一般我们都是会把index写上
 2.敲回车时添加新数据（需要加入isSelected属性）
 3.删除功能
 4.计算一下当前没有被选中的个数
 添加 => 删除（删除哪一个）
+问题？
+什么数据
  */
