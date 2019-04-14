@@ -24,29 +24,30 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <h3 class="text-danger">亲们 你有xxx件事要完成</h3>
-                            <input type="text" class="form-control">
+                            <h3 class="text-danger">亲们 你有{{count}}件事要完成</h3>
+                            <input type="text" class="form-control" v-model="title" @keyup.enter="add">
                         </div>
                         <div class="panel-body">
                             <ul class="list-group">
-                                <li class="list-group-item">
+                                <li class="list-group-item" v-for="(todo,index) in filterTodos" @dblclick="remember(todo)">
                                     <!-- 如果isSelected为true则del生效 -->
                                     <!-- 当我点击li时，我可以知道点击的是那一项，
                                         如果我点击的todo和当前循环的某一项相等的时候，应该显示输入框 -->
-                                    <span>
-                                        <input type="checkbox">
-                                        
+                                    <span :class="{del:todo.isSelected}" v-show="cur!==todo">
+                                        <input type="checkbox" v-model="todo.isSelected">
+                                        {{todo.title}}
                                     </span>
-                                    <input type="text"> 
-                                    <button class="pull-right btn btn-danger btn-xs">&bigotimes;</button>
+                                    <input type="text" v-model="todo.title" v-show="cur===todo" 
+                                    @keyup.enter="cancel" @blur="cancel" v-focus="cur===todo"> 
+                                    <button class="pull-right btn btn-danger btn-xs" @click="remove(todo)">&bigotimes;</button>
                                 </li>
                             </ul>
                         </div>
                         <div class="panel-footer">
                             <ul class="nav nav-pills">
-                                <li role="presentation"><a href="#/all">全部任务</a></li>
-                                <li role="presentation"><a href="#/finish">已完成</a></li>
-                                <li role="presentation"><a href="#/unfinish">未完成</a></li>
+                                <li role="presentation" :class="{active:hash==='all'}"><a href="#/all">全部任务</a></li>
+                                <li role="presentation" :class="{active:hash==='finish'}"><a href="#/finish">已完成</a></li>
+                                <li role="presentation" :class="{active:hash==='unfinish'}"><a href="#/unfinish">未完成</a></li>
                             </ul>
                         </div>
                     </div>
