@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-handsome></my-handsome>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script>
+        // 1. 组件名不要带有大写 多个单词用 -
+        // 2. 只要组件名和定义名字是相同是可以的（首字母大写）
+        // 3. html 采用短横线隔开命名法 js中转成驼峰也是可以的
+        Vue.component('my-handsome',{
+            // 标签名都是小写的，不支持大写
+            // 一个对象可以看成一个组件
+            template:'<div>{{msg}} <span>xyyojl</span></div>',
+            data(){ // 组件中的数据必须是函数类型 返回一个实例作为组件的数据
+                return {msg:'我很英俊'}
+
+            }
+
+        })
+        // 一般写插件的时候全局组件使用的多一些
+        // 用法：全局组件 可以声明一次在任何地方使用 类
+        // 局部组件：必须告诉这个组件属于谁 实例上
+        let vm = new Vue({
+            el:'#app'
+        })
+    </script>
+    <!-- 
+        1.组件化开发
+            我们可以很直观的将一个复杂的页面分割成若干个独立组件，每个组件包含自己逻辑和样式，再将这些
+            独立组件组合完成一个复杂的页面。这样既减少了逻辑复杂度，又实现了代码的重用。页面是组件的容器，
+            组件自由组合形成完整的界面，当不需要某个组件时，或者想要替换某个组件时，可以随时进行
+            替换和删除，而不影响整个应用的运行。
+        2.组件化开发的好处
+            提高开发效率
+            方便重复使用
+            便于协同开发
+            更容易被管理和维护
+        一个自定义标签 vue就会把他看成一个组件 div p span a header 
+        vue 可以给这些标签赋予一定意义
+        分类 页面级组件：1. 一个页面是一个组件
+                        2. 将可复用的部分抽离出来 基础组件
+
+
+     -->    
+</body>
+</html>

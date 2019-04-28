@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+        <!-- <div>parent
+            <div>son
+                <div>grandson</div>
+            </div>
+        </div> -->
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script>
+        // 如果要再一个组件中使用另一个组件，
+        // 1.先保证使用的组件是真实存在
+        // 2.在需要引用这个组件的实例上通过components注册这个组件，
+        // 3.组件需要在父级的模板中通过标签的形式引入
+        let grandson = {
+            template:'<div>grandson</div>',
+        }
+        let son = {
+            template:'<div>son<grandson></grandson></div>',
+            components:{
+                grandson
+            }
+        }
+        let parent = {
+            template:'<div>parent <son></son></div>',
+            components:{
+                son
+            }
+        }
+        
+        
+        let vm = new Vue({
+            el:'#app',
+            data:{},
+            template:'<parent></parent>',
+            components:{
+                parent
+            }
+        })
+    </script>
+</body>
+</html>

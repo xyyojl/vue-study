@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script>
+        /* 
+            生命周期
+                    beforeCreate(初始化内部方法) created
+                    beforeMount mounted
+                    beforeUpdate updated
+                    beforeDestroy destroyed
+            实际开发中使用最多的是
+            created mounted
+         */
+        let vm = new Vue({ // 根实例，初始化时会调用很多方法（钩子函数）
+            beforeCreate(){ 
+                // 步骤1
+                // 执行这个函数的时候，并没有data
+                // 此方法一般用不到
+                debugger;
+            },
+            // el:'#app',
+            data:{
+                a:1
+            },
+            created(){ 
+                // 步骤2
+                // 有了data，有get和set
+                // 获取ajax，初始化操作
+                debugger;
+            },
+            beforeMount(){ 
+                // $mount 挂载
+                // 没有什么实际意义
+                alert(1)
+            },
+            // 步骤4 如果有template属性会用模板替换掉外部html，只要有此属性，app中的内容就没有任何意义
+            // 只能有一个根元素，不能是文本节点
+            template:'<div>{{a}}</div>',
+            mounted(){
+                // 编译好的元素替换掉#app 真实 DOM 渲染完了操作dom
+
+            },
+            beforeUpdate(){ // beforeUpdate Updated 一般用watch来替换掉了
+                alert('更新之前')
+            },
+            updated(){
+                alert('更新之后')
+            },
+            beforeDestroy(){
+                // 可以清除定时器 或者 清除事件绑定
+                alert('销毁之前')
+            },
+            destroyed(){
+                alert('销毁之后')
+            }
+        })
+        // 步骤3 要保证有编译的元素
+        vm.$mount('#app')
+        vm.$destroy()
+    </script>
+</body>
+</html>

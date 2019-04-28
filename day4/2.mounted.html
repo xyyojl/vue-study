@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p ref="myp">{{msg}}</p>
+        <div ref="wrap">
+            <div v-for="a in arr" ref="mydiv">{{a}}</div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'hello',
+                arr:[1,2,3]
+            },
+
+            /* 
+                this.$data vm上的数据
+                this.$watch 监控
+                this.$el 当前el元素
+                this.$set 后加的属性实现响应式变化
+                this.$options vm上的所有属性 
+                this.$nextTick // 异步方法，等待渲染dom完成后来获取vm
+                this.$refs
+             */
+
+            mounted(){
+                // document.getElementsByTagName('p')[0].innerHTML
+                // console.log(vm) 报错 vm is not defined
+                /* setTimeout(()=>{
+                    console.log(vm)
+                },30) */
+                this.$nextTick(()=>{ 
+                    // 异步方法，等待渲染dom完成后来获取vm
+                    console.log(vm)
+                })
+                // 如果dom元素不是通过v-for 循环出来的 只能获取到一个
+                // ，通过v-for循环出来的可以获取多个
+                console.log(this.$refs.myp);
+                console.log(this.$refs.mydiv);
+                this.arr = [1,2,3,4]; //dom渲染是异步的
+                // this.$refs.wrap 这个是拿得到上一次的结果
+                // console.log(this.$refs.wrap.children.length)
+                this.$nextTick(()=>{
+                    // 如果数据变化后想获取真实dom中的内容，需要等待页面渲染完毕后再去获取，
+                    // 所有的dom操作 最后nextTick中
+                    console.log(this.$refs.wrap)
+                })
+                debugger;
+            }
+        })
+    </script>
+</body>
+</html>
