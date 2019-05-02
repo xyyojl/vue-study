@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        父亲：{{money}}
+        <!-- child.$on('child-msg',things) -->
+        <child :m="money" v-on:child-msg="things"></child>
+    </div>
+    <!-- 父亲绑定一些事件，儿子触发这个事件，将参数传递过去 单向数据流，父亲数据刷新 儿子就刷新 -->
+    <!-- 
+        1. 让父亲绑定一些事件
+        2. 让儿子去触发这些事件 $on
+        3. 让儿子绑定一些自定义的事件
+        4. 让父亲的方法执行，并传递参数
+     -->
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{money:400},
+            components:{
+                child:{
+                    props:['money'],
+                    template:'<div>儿子：{{m}} <button @click="getMoney()">多要点钱</button></div>',
+                    methods:{
+                        getMoney(){
+                            // 触发自己的自定义事件，让父亲的方法执行
+                            this.$emit('child-msg',800)
+                        }
+                    }
+                    
+                }
+            },
+            methods:{
+                things(val){ // on('xxx',things) 这事绑定给谁
+                    alert(val);
+                    this.money = val;
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
