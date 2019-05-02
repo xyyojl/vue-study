@@ -10,7 +10,9 @@
     <div id="app">
         父亲：{{money}}
         <!-- child.$on('child-msg',things) -->
-        <child :m="money" v-on:child-msg="things"></child>
+        <!-- <child :m="money" @update:m="val => this.money=val"></child> -->
+        <child :m.sync="money"></child>
+        <!-- 写的时候我们还是按照原有的写法即可 语法糖 sync的用法 -->
     </div>
     <!-- 父亲绑定一些事件，儿子触发这个事件，将参数传递过去 单向数据流，父亲数据刷新 儿子就刷新 -->
     <!-- 
@@ -31,18 +33,13 @@
                     methods:{
                         getMoney(){
                             // 触发自己的自定义事件，让父亲的方法执行
-                            this.$emit('child-msg',800)
+                            this.$emit('update:m',800)
                         }
                     }
                     
                 }
             },
-            methods:{
-                things(val){ // on('xxx',things) 这事绑定给谁
-                    alert(val);
-                    this.money = val;
-                }
-            }
+            
 
         })
     </script>
