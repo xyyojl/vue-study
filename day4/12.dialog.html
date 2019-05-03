@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .mask {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, .35);
+            top: 0;
+            left: 0;
+        }
+
+        .dialog {
+            width: 400px;
+            height: 150px;
+            background: #fff;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="flag = true">弹</button>
+        <!-- 如果show的值是true则显示 如果是false则隐藏 @close对应的函数是点击关闭按钮时触发的函数  -->
+        <modal :show="flag" @close="()=>flag=false"></modal>
+        <!-- close 这个是自定义事件的名字 -->
+        <!-- <div class="mask">
+            <div class="dialog">
+                <button>关闭</button>
+            </div>
+        </div> -->
+    </div>
+    <template id="dialog">
+        <div class="mask" v-show="show">
+            <div class="dialog">
+                <!-- close 是子组件的方法函数名 -->
+                <button @click="shutdown">关闭</button>
+            </div>
+        </div>
+    </template>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script>
+        let modal = {
+            props:['show'], //接收了父组件的属性
+            template: '#dialog',
+            methods:{
+                shutdown(){
+                    this.$emit('close');
+                }
+            }
+
+        };
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                flag:false
+            },
+            components: {
+                // 名字不能叫dialog 原生中已经占用了这个名字
+                modal:modal,
+            },
+            
+        })
+    </script>
+</body>
+
+</html>
