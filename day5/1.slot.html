@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 父-> 子 子-> 父 父调用子组件的方法 -->
+    <div id="app">
+        <!-- 这里放得内容均属于父级当前模板 只有属性名是属于组件的 -->
+        <modal>
+            <p slot="content" @click="fn">亲确认删除吗？</p>
+            <h1 slot="title">是否删除</h1>
+            <a href="http://www.zhufengpeixun.cn">去珠峰</a>
+        </modal>
+        <!-- <modal><h1>是否确认？</h1></modal>
+        <modal></modal> -->
+    </div>
+    <!-- slot 作用 定制模板 -->
+    <!-- 模板中只能有一个根元素，可以通过元素属性定制模板 -->
+    <!-- slot 中可以放一些默认的内容，如果传递了内容则替换掉 -->
+    <!-- 如果没有名字的标签默认会放置到default中 -->
+    <template id="modal">
+        <div>
+            <slot name="title">默认标题</slot>
+            <slot name="content">默认内容</slot>
+            <slot name="default">这是一个默认的标题</slot>
+        </div>
+    </template>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        let modal = {
+            template:'#modal',
+            
+        };
+        let vm = new Vue({
+            el:'#app',
+            components:{
+                modal
+            },
+            data:{},
+            methods:{
+                fn(){
+                    alert(1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

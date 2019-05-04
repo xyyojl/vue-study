@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <!-- template slot trasition -->
+        <input type="radio" v-model="radio" value="home">home
+        <input type="radio" v-model="radio" value="list">list
+        <!-- 一般用作缓存：为的是后面的路由作准备，如果缓存了就不会再走 created mounted 钩子函数 -->
+        <!-- 子组件和父组件同时拥有 -->
+        <keep-alive>
+            <component :is="radio"></component>   
+        </keep-alive> 
+    </div>
+    
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        let home = {
+            template:'<div>home</div>',
+            mounted(){alert('挂载')},
+            beforeDestroy(){alert('销毁')}
+        };
+        let list = {
+            template:'<div>list</div>',
+            mounted(){alert('挂载')},
+            beforeDestroy(){alert('销毁')}
+        };
+        let vm = new Vue({
+            el:'#app',
+            components:{
+                home,list
+            },
+            data:{
+                radio:'home'
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <child ref="child"></child>
+    </div>
+    <template id="child">
+        <ul>
+            <li v-for="a in arr">{{a}}</li>
+        </ul>
+    </template>
+    <!-- 子组件和父组件同时拥有mounted方法 会先走谁？ -->
+    <!-- 需要等待子组件挂载完成之后再触发父组件的挂载 -->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            mounted(){
+                this.$nextTick(()=>{ // 想操作dom 就加一个nextTick
+                    console.log(this.$refs.child.$el.innerHTML);
+                })
+            },
+            components:{
+                child:{
+                    template:'#child',
+                    data(){
+                        return {arr:[1,2,3]}
+                    },
+                    mounted(){ // 此处是异步渲染dom
+                        this.arr = [4,5,6]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
