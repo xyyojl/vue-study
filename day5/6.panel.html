@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <panel type="primary">
+            <div slot="title">这是一篇vue的使用文章</div>
+            <div slot="content">
+                内容区
+                <p>组件的属性传递</p>
+                <p>slot的用法</p>
+                <p>ref的使用</p>
+                <p>nextTick的用法</p>
+            </div>
+            <div>作者：zfpx</div>
+        </panel>
+        <panel></panel>
+    </div>
+    <template id="panel">
+        <div class="panel" :class="[color]">
+            <div class="panel-heading">
+                <slot name="title"></slot>
+            </div>
+            <div class="panel-body">
+                <slot name="content"></slot>
+            </div>
+            <div class="panel-footer">
+                <slot>匿名</slot>
+            </div>
+        </div>
+    </template>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let panel = {
+            template:'#panel',
+            computed:{
+                color(){
+                    return 'panel-'+this.type;
+                }
+            },
+            props:{
+                type:{
+                    type:String,
+                    default:'default'
+                }
+            }
+        };
+        let vm = new Vue({
+            el:'#app',
+            data:{},
+            components:{
+                panel
+            }
+        })
+    </script>
+</body>
+</html>
