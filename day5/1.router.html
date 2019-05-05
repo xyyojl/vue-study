@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 前端后端分离 
+        后端只负责提供接口供前端调用，像跳转都是前端自己处理的 
+        hash 模式 # 开发时使用 hash 不会导致404 hash的方式 不支持seo
+         h5的history pushState （上线采用h5的跳转）
+    -->
+    <div id="app">
+        <!-- router-view 是一个全局组件，可以直接使用 -->
+        <router-view></router-view>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- vue-router 必须放在 vue 的后面 -->
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        let home ={
+            template:'<div>首页</div>'
+        };
+        let list = {
+            template:'<div>列表页</div>'
+        };
+        let routes = [ // 路由的映射表 配置路径和组件的关系
+            // 路径必须加 /
+            {path:'/home',component:home}, // 配置的关系就是页面级组件
+            {path:'/list',component:list},
+        ];
+        let router = new VueRouter({  // 引入vue-router 自带 VueRouter 类
+            routes:routes
+        })
+        let vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            router:router
+        })
+    </script>
+</body>
+</html>
