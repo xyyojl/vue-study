@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <brother1></brother1>
+        <brother2></brother2>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        let eventBus = new Vue;
+        let brother1 = {
+            template:'<div>{{color}}<button @click="change">变绿</button></div>',
+            data(){
+                // old 保存原有值
+                return {color:'绿色',old:'绿色'}
+            },
+            created(){
+                eventBus.$on('changeRed',(val)=>{ // 页面一加载兄弟1长个耳朵听（监听）
+                    this.color = val;
+                })
+            },
+            methods:{
+                change(){
+                    eventBus.$emit('changeGreen',this.old)
+                }
+            },
+        }; 
+        let brother2 = {
+            template:'<div>{{color}}<button @click="change">变红</button></div>',
+            data(){
+                return {color:'红色',old:'红色'}
+            },
+            methods:{
+                change(){
+                    eventBus.$emit('changeRed',this.old)
+                }
+            },
+            created(){
+                eventBus.$on('changeGreen',(val)=>{ // 页面一加载兄弟1长个耳朵听（监听）
+                    this.color = val;
+                })
+            }
+        }; 
+        let vm = new Vue({
+            el:'#app',
+            components:{
+                brother1,brother2
+            }
+        })
+    </script>
+</body>
+</html>

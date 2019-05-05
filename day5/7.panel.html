@@ -9,18 +9,13 @@
 </head>
 <body>
     <div id="app">
-        <panel type="primary" @say-title="parent">
-            <div slot="title">这是一篇vue的使用文章</div>
+        <panel :type="article.type" @say-title="parent" v-for="(article,index) in articles" :key="index"> 
+            <div slot="title"><span v-html="article.title">}</span></div>
             <div slot="content">
-                内容区
-                <p>组件的属性传递</p>
-                <p>slot的用法</p>
-                <p>ref的使用</p>
-                <p>nextTick的用法</p>
+                {{article.content}}
             </div>
-            <div>作者：zfpx</div>
+            <div v-if="article.author">{{article.author}}</div>
         </panel>
-        <panel></panel>
     </div>
     <template id="panel">
         <div class="panel" :class="[color]">
@@ -60,7 +55,13 @@
         };
         let vm = new Vue({
             el:'#app',
-            data:{},
+            data:{
+                articles:[
+                    {type:'warning',title:'<h2>Vue</h2>',content:'这是vue的文章',author:'作者：zfpx'},
+                    {type:'primary',title:'<h2>React</h2>',content:'这是react的文章',author:'作者：xxx'},
+                    {type:'danger',title:'<h2>Angular</h2>',content:'这是angular的文章'}
+                ]
+            },
             components:{
                 panel
             },
