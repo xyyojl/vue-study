@@ -35,14 +35,17 @@
                 back(){
                     // 返回某一级
                     // this.$router.back()
-                    this.$router.go(-1)
+                    this.$router.go(-1) // go 顶替了 back
                 }
             }
         }
         // 1.映射表
         let routes = [
+            {path:'/',component:home},  // 默认展示的路由
             {path:'/home',component:home},
-            {path:'/list',component:list}
+            {path:'/list',component:list},
+            // {path:'*',component:list}  // 这个地方的路径不会变 只是切换了组件而已
+            {path:'*',redirect:'/home'} // 路径变 组件也要切换 404的时候
         ];
         // 2. 创建路由
         let router = new VueRouter({

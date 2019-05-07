@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+      <router-link to="/article/1/a">商品1</router-link>
+      <router-link to="/article/2/a">商品2</router-link>
+      <router-link to="/article/3/a">商品3</router-link>
+      <router-view></router-view>
+    </div>
+        
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- vue-router 必须放在 vue 的后面 -->
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        // #/article/2
+        let article = {template:'<div>第 {{this.$route.params.c}} 篇文章</div>'};
+        // /article/2/d
+        // /article/:c/:a => {c:2,a:'d'} this.$route.params
+        let routes = [ // 路径参数 表示值必须要有但是值是随机的
+            {path:'/article/:c/:a',component:article}
+        ];
+        let router = new VueRouter({
+            routes
+        })
+        let vm = new Vue({
+            el:'#app',
+            router 
+        })
+    </script>
+</body>
+</html>

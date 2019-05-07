@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+       <router-link to="/home">首页</router-link>
+       <router-link to="/detail">详情页</router-link>
+
+       <router-view></router-view>
+    </div>
+    <template id="detail">
+        <!-- <div>detail</div> -->
+        <div>
+            <router-link to="/detail/profile">个人中心</router-link>
+            <router-link to="/detail/about">关于我</router-link>
+            <router-view></router-view>
+        </div>
+    </template>    
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- vue-router 必须放在 vue 的后面 -->
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        let home = {template:'<div>home</div>'};
+        let detail = {template:'#detail'};
+        let profile = {template:'<div>profile</div>'};
+        let about = {template:'<div>about</div>'};
+        let routes = [
+            {path:'/home',component:home},
+            {
+                path:'/detail',
+                component:detail,
+                children:[ // children 中的路径永远不带/ ,如果带/ 表示为 1级路由
+                    {path:'profile',component:profile},
+                    {path:'about',component:about}
+                ]
+            },
+        ];
+        let router = new VueRouter({  // 引入vue-router 自带 VueRouter 类
+            routes
+        })
+        let vm = new Vue({
+            el:'#app',
+            router
+        })
+    </script>
+</body>
+</html>
