@@ -29,6 +29,15 @@ npm install vue-router --save
 
 3.初探vue-router
 
+## vue-cli
+
+下载一个全局生成的vue项目的脚手架
+
+```
+npm install vue-cli -g
+vue init webpack <项目名>
+```
+
 
 
 
