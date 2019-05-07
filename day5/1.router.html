@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <!-- 前端后端分离 
@@ -17,8 +22,8 @@
         <!-- 当mode设置为history 则不行 
         <a href="#/home">首页</a>
         <a href="#/list">列表页</a> -->
-        <router-link to="/home">首页</router-link>
-        <router-link to="/list">列表页</router-link>
+        <router-link to="/home" tag="button">首页</router-link>
+        <router-link to="/list" tag="button">列表页</router-link>
         <router-view></router-view>
     </div>
     <script src="./node_modules/vue/dist/vue.js"></script>
@@ -37,8 +42,9 @@
             {path:'/list',component:list},
         ];
         let router = new VueRouter({  // 引入vue-router 自带 VueRouter 类
-            mode:'history', // h5 模式
-            routes:routes
+            // mode:'history', // h5 模式
+            routes:routes,
+            linkActiveClass:'active'  // 更改默认样式的类名 默认叫 router-link-active
         })
         let vm = new Vue({
             el:'#app',

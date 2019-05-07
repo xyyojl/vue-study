@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- to="/home" :to="{path:'/home'}" -->
+        <router-link :to="{path:'/home'}">首页</router-link>
+        <router-link :to="{path:'/list'}">列表页</router-link>
+        <router-view></router-view>
+    </div>
+    <!-- 编程式导航，在JS跳转页面 -->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <!-- vue-router 必须放在 vue 的后面 -->
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        let home = {
+            template:'<div>首页 <button @click="toList">去列表</button></div>',
+            methods:{
+                toList(){
+                    // 强制跳转路径
+                    this.$router.push('/list')
+                    // 路由替换，将当前的历史替换掉
+                    // this.$router.replace('/list')
+                }
+            }
+        };
+        let list = {
+            template:'<div>列表 <button @click="back">返回</button></div>',
+            methods:{
+                back(){
+                    // 返回某一级
+                    // this.$router.back()
+                    this.$router.go(-1)
+                }
+            }
+        }
+        // 1.映射表
+        let routes = [
+            {path:'/home',component:home},
+            {path:'/list',component:list}
+        ];
+        // 2. 创建路由
+        let router = new VueRouter({
+            routes
+        })
+        let vm = new Vue({
+            el:'#app',
+            router // 每个组件都会拥有一个名字叫$router的属性(有r的放的都是方法) 还有一个名字叫 $route(没r的放的都是属性)
+        })
+    </script>
+</body>
+</html>
