@@ -21,3 +21,10 @@ npm run dev
   - 如何导出模块（export）
   - 如何使用模块 （import）
 
+## 先下载webpack
+```
+// 安装之前要干一件事 npm init
+npm init 
+npm install webpack -g
+```
+> 安装webpack或者less最好不要安装全局的，否则可能会导致webpack的版本差异，所以最好本地安装
