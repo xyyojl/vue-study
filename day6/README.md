@@ -23,8 +23,11 @@ npm run dev
 
 ## 先下载webpack
 ```
-// 安装之前要干一件事 npm init
-npm init 
-npm install webpack -g
+// 安装 webpack 之前要干一件事 npm init
+npm init -y
+npm install webpack
 ```
-> 安装webpack或者less最好不要安装全局的，否则可能会导致webpack的版本差异，所以最好本地安装
+> 安装webpack或者less最好不要安装全局的，否则可能会导致webpack的版本存在差异，所以最好本地安装
+
+- 在package.json中配置一个脚本，这个脚本用的命令是webpack，会去当前的node_modules下找bin对应的webpack名字让其执行，其实执行的就是bin/webpack.js，webpack.js需要当前目录下有个名字叫webpack.config.js的文件，我们通过npm run build 执行的目录是当前文件的目录，所以会去当前目录下查找。
+模块相互依赖，源码放在一个文件夹，打包后的代码放在另一个文件夹
