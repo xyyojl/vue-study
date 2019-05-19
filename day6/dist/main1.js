@@ -60,57 +60,16 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-"use strict";
+/***/ 2:
+/***/ (function(module, exports) {
 
-
-var _b = __webpack_require__(1);
-
-var _b2 = _interopRequireDefault(_b);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var str = __webpack_require__(2);
-
-console.log(str);
-console.log(_b2.default);
-
-var a = function a(b) {
-  return function (c) {
-    return function (d) {
-      return b + c + d;
-    };
-  };
-};
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var str = '我非常帅';
-exports.default = str;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var str = '我很帅';
-module.exports = str;
+console.log(2)
 
 /***/ })
-/******/ ]);
+
+/******/ });
