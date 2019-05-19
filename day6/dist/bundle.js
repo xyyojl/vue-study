@@ -70,6 +70,8 @@
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _b = __webpack_require__(1);
 
 var _b2 = _interopRequireDefault(_b);
@@ -88,6 +90,11 @@ var a = function a(b) {
     };
   };
 };
+var obj = { school: 'zfpx' };
+var obj1 = { age: 8 };
+
+var newObj = _extends({}, obj, obj1); // es7语法
+console.log(newObj);
 
 /***/ }),
 /* 1 */

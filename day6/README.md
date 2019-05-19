@@ -42,3 +42,9 @@ npm install babel-loader --save-dev
 ```
 npm install babel-preset-es2015 --save-dev
 ```
+
+## babel-preset-stage-0
+- 解析es7的语法的
+```
+npm install babel-preset-stage-0 --save-dev
+```
